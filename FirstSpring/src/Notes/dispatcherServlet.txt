@@ -1,0 +1,4 @@
+Dispatcher Servlet is a heart of any Spring Application ,
+and it routes incoming request to appropriate controller methods
+
+Spring Bott takes care of configuring dispatcher servlet for the application , it autoconfigure and it saves the efforts of setting it up yourself
