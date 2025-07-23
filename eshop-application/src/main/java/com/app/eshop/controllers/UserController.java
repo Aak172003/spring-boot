@@ -1,5 +1,7 @@
 package com.app.eshop.controllers;
 
+import com.app.eshop.dto.UserRequest;
+import com.app.eshop.dto.UserResponse;
 import com.app.eshop.models.User;
 import com.app.eshop.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +35,7 @@ public class UserController {
     //    @GetMapping("") -> if we have nothing to mention inside PostMapping then simply write like below
     @GetMapping
     //    @RequestMapping(value = "" , method = RequestMethod.GET)
-    public ResponseEntity<List<User>> getAllUsers(){
+    public ResponseEntity<List<UserResponse>> getAllUsers(){
         System.out.println(userService.fetchAllUsers() + " get all user -------------");
         return new ResponseEntity<>(userService.fetchAllUsers(), HttpStatus.OK);
         // return  ResponseEntity.ok(userService.fetchAllUsers());
@@ -42,7 +44,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity< User> getUser(@PathVariable Long id){
+    public ResponseEntity< UserResponse> getUser(@PathVariable Long id){
         System.out.println(userService.fetchAllUsers() + " get all user -------------");
 //        User user = userService.fetchUser(id);
 //        if(user == null){
@@ -59,15 +61,15 @@ public class UserController {
 
 //    @PostMapping("") -> if we have nothing to mention inside PostMapping then simply write like below
     @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody User user){
-        userService.addUserUser(user);
+    public ResponseEntity<String> createUser(@RequestBody UserRequest userRequest){
+        userService.addUserUser(userRequest);
         return ResponseEntity.ok( "User Added Successfully");
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity< String> updateUser(@PathVariable Long id, @RequestBody User updatedUser){
+    public ResponseEntity< String> updateUser(@PathVariable Long id, @RequestBody UserRequest updatedUserRequest){
         System.out.println("id ::::::::::::::::::: "+ id);
-        boolean updated =  userService.updateUser(id, updatedUser);
+        boolean updated =  userService.updateUser(id, updatedUserRequest);
         if (updated){
             return  ResponseEntity.ok("User Updated Successfully");
         }
