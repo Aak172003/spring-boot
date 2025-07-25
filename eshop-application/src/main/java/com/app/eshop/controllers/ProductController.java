@@ -1,8 +1,6 @@
 package com.app.eshop.controllers;
-
 import com.app.eshop.dto.ProductRequest;
 import com.app.eshop.dto.ProductResponse;
-import com.app.eshop.dto.UserResponse;
 import com.app.eshop.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -49,6 +47,24 @@ public class ProductController {
         return new ResponseEntity<>(productService.fetchAllProducts(), HttpStatus.OK);
         // return  ResponseEntity.ok(userService.fetchAllUsers());
         // return  userService.fetchAllUsers();
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct (@PathVariable Long id){
+
+        System.out.println("id :::::::::::::::: " + id);
+     boolean deleted = productService.deleteProduct(id);
+
+     System.out.println("deleted :::::::::::::::: " + deleted);
+     return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+
+
+    @GetMapping("/search")
+    //    @RequestMapping(value = "" , method = RequestMethod.GET)
+    public ResponseEntity<List<ProductResponse>> searchProducts(@RequestParam String keyword){
+       return ResponseEntity.ok(productService.searchProducts(keyword));
 
     }
 }
