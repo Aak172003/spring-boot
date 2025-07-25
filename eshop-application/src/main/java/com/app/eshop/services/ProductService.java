@@ -2,7 +2,6 @@ package com.app.eshop.services;
 
 import com.app.eshop.dto.ProductRequest;
 import com.app.eshop.dto.ProductResponse;
-import com.app.eshop.dto.UserResponse;
 import com.app.eshop.models.Product;
 import com.app.eshop.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +33,13 @@ public class ProductService {
 
     public List<ProductResponse> fetchAllProducts(){
     System.out.println("productRepository.findAll() ::::::::::::::::: "  + productRepository.findAll());
-        return  productRepository.findAll().stream()
+//        return  productRepository.findAll().stream()
+//                .map(this::mapToProductResponce)
+//                .collect(Collectors.toList());
+
+//      JPA Knows findByActiveTrue means -> Find those active state is true
+//        return productRepository.findAll().stream()
+        return productRepository.findByActiveTrue().stream()
                 .map(this::mapToProductResponce)
                 .collect(Collectors.toList());
     }
@@ -55,7 +60,23 @@ public class ProductService {
         });
     }
 
-//  Filter Before Respond
+
+    public boolean deleteProduct(Long id) {
+//        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product Not Found")) ;
+//        product.setActive(false);
+//        productRepository.save(product);
+
+        return productRepository.findById(id).map(product -> {
+            System.out.println("product ::::::::::::: " + product);
+            product.setActive(false);
+            Product updateStatus =  productRepository.save(product);
+            System.out.println("updateStatus ::::::::::::: " + updateStatus);
+            return true;
+        }).orElse(false);
+
+    }
+
+    //  Filter Before Respond
     private ProductResponse mapToProductResponce(Product savedProject) {
         ProductResponse response =  new ProductResponse();
         response.setId(savedProject.getId());
@@ -78,7 +99,13 @@ public class ProductService {
         product.setPrice(productRequest.getPrice());
         product.setImageUrl(productRequest.getImageUrl());
         product.setStockQuantity(productRequest.getStockQuantity());
+    }
 
+
+    public List<ProductResponse> searchProducts(String keyword) {
+        return  productRepository.searchProducts(keyword).stream()
+                .map(this::mapToProductResponce)
+                .collect(Collectors.toList());
     }
 }
 
