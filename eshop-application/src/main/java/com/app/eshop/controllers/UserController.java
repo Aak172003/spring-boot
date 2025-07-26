@@ -2,7 +2,6 @@ package com.app.eshop.controllers;
 
 import com.app.eshop.dto.UserRequest;
 import com.app.eshop.dto.UserResponse;
-import com.app.eshop.models.User;
 import com.app.eshop.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
