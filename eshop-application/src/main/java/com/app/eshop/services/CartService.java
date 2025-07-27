@@ -7,14 +7,17 @@ import com.app.eshop.models.User;
 import com.app.eshop.repositories.CartItemRepository;
 import com.app.eshop.repositories.ProductRepository;
 import com.app.eshop.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CartService {
 
     private final ProductRepository productRepository;
@@ -33,7 +36,7 @@ public class CartService {
 
     public boolean addToCart(String userId, CartItemRequest cartItemRequest) {
 
-//        Look for product is existed in our database or not
+//       Look for product is existed in our database or not
          Optional<Product> productData = productRepository.findById(cartItemRequest.getProductId());
          if(productData.isEmpty()){
              return  false;
@@ -71,5 +74,29 @@ public class CartService {
         }
 
         return true;
+    }
+
+    public boolean deleteItemFromCart(String userId, Long productId) {
+//      Look for product is existed in our database or not
+        Optional<Product> productData = productRepository.findById(productId);
+        Product productThings = productData.get();
+
+        Optional<User> userData = userRepository.findById(Long.valueOf(userId));
+        User userThings = userData.get();
+
+        System.out.println("user ---------------- " + userThings);
+        System.out.println("product -------------------- " + productThings);
+
+        if(productData.isPresent() && userData.isPresent()){
+            cartItemRepository.deleteByUserAndProduct(userData.get() , productData.get());
+            return true;
+        }
+        return false;
+    }
+
+    public List<CartItem> getCart(String userId) {
+        return userRepository.findById(Long.valueOf(userId))
+                .map(cartItemRepository:: findByUser)
+                .orElseGet(List::of);
     }
 }
