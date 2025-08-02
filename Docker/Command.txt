@@ -1,0 +1,8 @@
+Note : And this command only work on gitbash terminal 
+
+
+This is how i can build docker image of spring-boot application 
+./mvnw spring-boot:build-image "-Dspring-boot.build-image.imageName=aakash1707/eshop-application"
+
+This is How we can push docer image to docker hub 
+docker push aakash1707/eshop-application
