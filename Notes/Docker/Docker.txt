@@ -1,19 +1,19 @@
-contanarize the application using docker 
-Here codebase know to a container
+Containerize the Application Using Docker
 
-Docker solves the problem of dependency management , compatablity issues , environmental consitency by providing with contanarization
-It enables developer to pack their application and the dependencies into container , and this ensure consistent execution in different host system 
-And it elimates all the version conflict here 
+The codebase is now containerized.
 
+Docker solves the problems of dependency management, compatibility issues, and environmental consistency by providing containerization.  
+It enables developers to package their applications along with all dependencies into a container, ensuring consistent execution across different host systems.  
+This eliminates version conflicts.
 
+Containerization is a lightweight virtualization technology that enables you to package your application along with its dependencies into a standard unit called a **container**.  
+With Docker, we can create containers that include everything needed for the application to run—such as the code, runtime, libraries, and even system tools.
 
-contanarization is a light weight virtualization technolofythat enables you to pack our applicationalong with it's dependencies into a standard unit which is called conatiner 
-And with docker we can create conatiner that have everything that is needed for an application to run , 
-now this can include the code , the run-time libraries and even the system tools
+These containers are **portable**, meaning they can be moved across systems and deployed on any machine that supports Docker or has Docker running.  
+This ensures that the same container running on one machine will run exactly the same on another machine.  
 
-And this conatiners are portable ,which means you can move them accross the system and can be deployed in any system that supports docker or has docker up and running .
-Now This ensures that the same conatiner which is running on my system will work on someone else system in the same way like it was runnung on my system  
-This ensure consistency 
+This guarantees consistency.
 
+Hypervisor
 
-HyperViser -> This hyperviser enbales us to interact with virtual machines 
+A **hypervisor** enables us to interact with and manage **virtual machines (VMs)**.  
