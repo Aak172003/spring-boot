@@ -1,0 +1,19 @@
+contanarize the application using docker 
+Here codebase know to a container
+
+Docker solves the problem of dependency management , compatablity issues , environmental consitency by providing with contanarization
+It enables developer to pack their application and the dependencies into container , and this ensure consistent execution in different host system 
+And it elimates all the version conflict here 
+
+
+
+contanarization is a light weight virtualization technolofythat enables you to pack our applicationalong with it's dependencies into a standard unit which is called conatiner 
+And with docker we can create conatiner that have everything that is needed for an application to run , 
+now this can include the code , the run-time libraries and even the system tools
+
+And this conatiners are portable ,which means you can move them accross the system and can be deployed in any system that supports docker or has docker up and running .
+Now This ensures that the same conatiner which is running on my system will work on someone else system in the same way like it was runnung on my system  
+This ensure consistency 
+
+
+HyperViser -> This hyperviser enbales us to interact with virtual machines 
