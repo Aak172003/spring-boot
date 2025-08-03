@@ -29,6 +29,9 @@ This is how we can stor docker container
 This is used to remove stopped container
 6. docker rm <container-id/container-name>
 
+This is used to remove forcefully means if our container is in running state 
+docker rm -f postgresdb pgadmin
+
 This command is used to remove a docker image from local storage 
 7. docker rmi <image-id/image-name>
 
