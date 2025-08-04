@@ -1,0 +1,4 @@
+What is a Docker Compose file?
+
+A Docker Compose file is a YAML configuration file (docker-compose.yml) used to define and run multi-container Docker applications. 
+It allows you to configure your application's services, networks, and volumes in a single file and then start them all with a single command.
